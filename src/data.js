@@ -1,0 +1,190 @@
+//create an array with id, p content
+
+export const dataArray = {
+  Todo: [
+    {
+      id: "1",
+      prefix: "Todo",
+      content: {
+        Title: "Item 1 lsakfh",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "hour",
+        Importance: "Medium",
+      },
+    },
+    {
+      id: "2",
+      prefix: "Todo",
+      content: {
+        Title: "Item 2",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "3",
+      prefix: "Todo",
+      content: {
+        Title: "Item 3",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "4",
+      prefix: "Done",
+      content: {
+        Title: "Item 4",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "5",
+      prefix: "Doing",
+      content: {
+        Title: "Item 5",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "Medium",
+      },
+    },
+  ],
+  Doing: [
+    {
+      id: "6",
+      prefix: "Todo",
+      content: {
+        Title: "Item 1",
+        Category: "Education",
+        DueDate: "2022-02-01",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "7",
+      prefix: "Todo",
+      content: {
+        Title: "Item 2",
+        Category: "Education",
+        DueDate: "2022-02-01",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "Low",
+      },
+    },
+    {
+      id: "8",
+      prefix: "Todo",
+      content: {
+        Title: "Item 3",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "9",
+      prefix: "Done",
+      content: {
+        Title: "Item 4",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "Medium",
+      },
+    },
+    {
+      id: "10",
+      prefix: "Doing",
+      content: {
+        Title: "Item 5",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+  ],
+  Done: [
+    {
+      id: "12",
+      prefix: "Todo",
+      content: {
+        Title: "Item 12",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "13",
+      prefix: "Todo",
+      content: {
+        Title: "Item 2",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "14",
+      prefix: "Todo",
+      content: {
+        Title: "Item 3",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "15",
+      prefix: "Done",
+      content: {
+        Title: "Item 4",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+    {
+      id: "16",
+      prefix: "Doing",
+      content: {
+        Title: "Item 5",
+        DueDate: "2022-02-01",
+        Category: "Education",
+        Estimate: "1",
+        EstimateUnit: "Minute",
+        Importance: "High",
+      },
+    },
+  ],
+};
