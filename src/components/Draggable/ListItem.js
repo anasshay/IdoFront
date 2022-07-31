@@ -37,10 +37,10 @@ const ListItem = ({ item, index }) => {
     setData({ ...data, id });
   };
 
-  const newDate = new Date(item.content.DueDate);
+  const newDate = new Date(item.dueDate);
 
   return (
-    <Draggable draggableId={item.id} index={index}>
+    <Draggable draggableId={item.id.toString()} index={index}>
       {(provided, snapshot) => {
         return (
           <TableContent
@@ -50,7 +50,7 @@ const ListItem = ({ item, index }) => {
             {...provided.dragHandleProps}
           >
             <CardTitle>
-              {item.content.Title}
+              {item.title}
               <EditIcon
                 src={editIcon}
                 alt="Edit card"
@@ -66,13 +66,13 @@ const ListItem = ({ item, index }) => {
               </LeftContent>
               {!editMode && (
                 <RightContent>
-                  <p>{item.content.Category}</p>
+                  <p>{item.category}</p>
                   <p>{newDate.toLocaleDateString()}</p>
                   <p>
-                    {item.content.Estimate} {item.content.EstimateUnit}
+                    {item.estimate} {item.estimateUnit}
                   </p>
-                  <Importance importance={item.content.Importance}>
-                    {item.content.Importance}
+                  <Importance importance={item.importance}>
+                    {item.importance}
                   </Importance>
                 </RightContent>
               )}
@@ -82,7 +82,7 @@ const ListItem = ({ item, index }) => {
                   <Input
                     name="Title"
                     type="text"
-                    defaultValue={item.content.Category}
+                    defaultValue={item.category}
                     onChange={(e) => handleChange(e)}
                   />
                   <Input
@@ -95,21 +95,21 @@ const ListItem = ({ item, index }) => {
                     <Input
                       name="Estimate"
                       type="number"
-                      defaultValue={item.content.Estimate}
+                      defaultValue={item.estimate}
                       onChange={(e) => handleChange(e)}
                     />
                     <Input
                       name="EstimateUnit"
                       type="text"
-                      defaultValue={item.content.EstimateUnit}
+                      defaultValue={item.estimateUnit}
                       onChange={(e) => handleChange(e)}
                     />
                   </EstimateInput>
                   <ImportanceDropDown
                     name="Importance"
-                    importance={item.content.Importance}
-                    defaultValue={item.content.Importance}
-                    selected={selecteValue || item.content.Importance}
+                    importance={item.importance}
+                    defaultValue={item.importance}
+                    selected={selecteValue || item.importance}
                     onChange={(e) => {
                       setSelecteValue(e.target.value);
                       handleChange(e);

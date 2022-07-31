@@ -51,16 +51,18 @@ const DraggableElement = ({ prefix, elements }) => (
       />
       {prefix}
     </TableTitle>
-    <Droppable droppableId={`${prefix}`}>
-      {(provided) => (
-        <div {...provided.droppableProps} ref={provided.innerRef}>
-          {elements.map((item, index) => (
-            <ListItem key={item.id} item={item} index={index} />
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
+    {elements && (
+      <Droppable droppableId={`${prefix}`}>
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {elements.map((item, index) => (
+              <ListItem key={item.id} item={item} index={index} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    )}
   </TableColumnWrapper>
 );
 

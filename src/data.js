@@ -1,6 +1,6 @@
 //create an array with id, p content
 
-export const dataArray = {
+export const data = {
   Todo: [
     {
       id: "1",
