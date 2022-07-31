@@ -14,6 +14,7 @@ import {
   SubmitButton,
 } from "./styles";
 import plusButton from "../../assets/plus.png";
+import { importance } from "../../config/config";
 
 const NewCard = (props) => {
   const handleChange = (e) => {
@@ -99,9 +100,9 @@ const NewCard = (props) => {
             handleChange(e);
           }}
         >
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
+          <option>{importance.LOW.name}</option>
+          <option>{importance.MEDIUM.name}</option>
+          <option>{importance.HIGH.name}</option>
         </NewCardImportance>
       </NewCardContent>
     </NewCardItem>

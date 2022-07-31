@@ -13,6 +13,7 @@ import {
   RightContent,
   TableContent,
 } from "./ListItemsStyles";
+import { importance } from "../../config/config";
 
 const ListItem = ({ item, index }) => {
   const [editMode, setEditMode] = React.useState(false);
@@ -115,17 +116,23 @@ const ListItem = ({ item, index }) => {
                       handleChange(e);
                     }}
                   >
-                    <option value="Low" style={{ backgroundColor: "#39AC95" }}>
-                      Low
+                    <option
+                      value={importance.LOW.name}
+                      style={{ backgroundColor: "#39AC95" }}
+                    >
+                      {importance.LOW.name}
                     </option>
                     <option
-                      value="Medium"
+                      value={importance.MEDIUM.name}
                       style={{ backgroundColor: "#FE913E" }}
                     >
-                      Medium
+                      {importance.MEDIUM.name}
                     </option>
-                    <option value="High" style={{ backgroundColor: "#DC3545" }}>
-                      High
+                    <option
+                      value={importance.HIGH.name}
+                      style={{ backgroundColor: "#DC3545" }}
+                    >
+                      {importance.HIGH.name}
                     </option>
                   </ImportanceDropDown>
                 </RightContent>

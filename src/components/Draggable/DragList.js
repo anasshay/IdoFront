@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
 import { data } from "../../data";
@@ -7,6 +6,7 @@ import NewCard from "../NewCardItem/NewCard";
 import { ListGrid, MainPageWrapper } from "./DragListStyles";
 import axios from "axios";
 import { fetchLink } from "../../config/config";
+import { importance } from "../../config/config";
 
 const removeFromList = (list, index) => {
   const result = Array.from(list);
@@ -44,14 +44,14 @@ function DragList(props) {
             break;
         }
         switch (item.importanceId) {
-          case 1:
-            item.importance = "Low";
+          case importance.LOW.id:
+            item.importance = importance.LOW.name;
             break;
-          case 2:
-            item.importance = "Medium";
+          case importance.MEDIUM.id:
+            item.importance = importance.MEDIUM.name;
             break;
-          case 3:
-            item.importance = "High";
+          case importance.HIGH.id:
+            item.importance = importance.HIGH.name;
             break;
         }
       });
