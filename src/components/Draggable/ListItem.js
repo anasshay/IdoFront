@@ -106,7 +106,15 @@ const ListItem = ({ item, index, updateCard }) => {
             {...provided.dragHandleProps}
           >
             <CardTitle>
-              {item.title}
+              {!editMode && item.title}
+              {editMode && (
+                <Input
+                  name="title"
+                  defaultValue={item.title}
+                  onChange={handleChange}
+                  placeholder="Title"
+                />
+              )}
               <EditIcon
                 src={editIcon}
                 alt="Edit card"
