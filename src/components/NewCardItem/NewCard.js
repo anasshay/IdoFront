@@ -32,12 +32,12 @@ const NewCard = (props) => {
     ) {
       alert("Please fill all fields");
     } else {
-      setData({ Importance: "Low" });
+      setData({ Importance: importance.LOW.name });
       props.handleAddCard(data);
     }
   };
 
-  const [data, setData] = React.useState({ Importance: "Low" });
+  const [data, setData] = React.useState({ Importance: importance.LOW.name });
 
   return (
     <NewCardItem>

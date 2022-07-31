@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { importance } from "../../config/config";
 
 export const TableContent = styled.div`
   display: flex;
@@ -61,11 +62,11 @@ export const Importance = styled.p`
   border-radius: 4px;
   padding: 5px 10px;
   background-color: ${(props) =>
-    props.importance === "Low"
+    props.importance === importance.LOW.name
       ? "#39AC95"
-      : props.importance === "Medium"
+      : props.importance === importance.MEDIUM.name
       ? "#FE913E"
-      : props.importance === "High"
+      : props.importance === importance.HIGH.name
       ? "#DC3545"
       : "#212529"};
 `;
@@ -102,11 +103,11 @@ export const ImportanceDropDown = styled.select`
   height: 30px;
   color: #fff;
   background-color: ${(props) =>
-    props.selected === "Low"
+    props.selected === importance.LOW.name
       ? "#39AC95"
-      : props.selected === "Medium"
+      : props.selected === importance.MEDIUM.name
       ? "#FE913E"
-      : props.selected === "High"
+      : props.selected === importance.HIGH.name
       ? "#DC3545"
       : "#212529"};
 `;

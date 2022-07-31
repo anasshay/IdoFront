@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { importance } from "../../config/config";
 
 export const NewCardItem = styled.div`
   display: flex;
@@ -111,11 +112,11 @@ export const NewCardImportance = styled.select`
   height: 30px;
   color: #fff;
   background-color: ${(props) =>
-    props.selected === "Low"
+    props.selected === importance.LOW.name
       ? "#39AC95"
-      : props.selected === "Medium"
+      : props.selected === importance.MEDIUM.name
       ? "#FE913E"
-      : props.selected === "High"
+      : props.selected === importance.HIGH.name
       ? "#DC3545"
       : "#212529"};
 `;
