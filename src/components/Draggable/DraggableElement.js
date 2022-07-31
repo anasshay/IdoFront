@@ -37,33 +37,44 @@ const TableColumnWrapper = styled.div`
   margin-top: 50px;
 `;
 
-const DraggableElement = ({ prefix, elements }) => (
-  <TableColumnWrapper>
-    <TableTitle>
-      <img
-        src={
-          (prefix === "Todo" && Todo) ||
-          (prefix === "Doing" && Doing) ||
-          (prefix === "Done" && Done)
-        }
-        alt={prefix}
-        style={{ width: "30px", height: "30px" }}
-      />
-      {prefix}
-    </TableTitle>
-    {elements && (
-      <Droppable droppableId={`${prefix}`}>
-        {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {elements.map((item, index) => (
-              <ListItem key={item.id} item={item} index={index} />
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    )}
-  </TableColumnWrapper>
-);
+const DraggableElement = ({ prefix, elements, updateCard }) => {
+  const handleCardUpdate = (item) => {
+    updateCard(item);
+  };
+
+  return (
+    <TableColumnWrapper>
+      <TableTitle>
+        <img
+          src={
+            (prefix === "Todo" && Todo) ||
+            (prefix === "Doing" && Doing) ||
+            (prefix === "Done" && Done)
+          }
+          alt={prefix}
+          style={{ width: "30px", height: "30px" }}
+        />
+        {prefix}
+      </TableTitle>
+      {elements && (
+        <Droppable droppableId={`${prefix}`}>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {elements.map((item, index) => (
+                <ListItem
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  updateCard={handleCardUpdate}
+                />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      )}
+    </TableColumnWrapper>
+  );
+};
 
 export default DraggableElement;

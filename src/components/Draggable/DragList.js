@@ -185,6 +185,26 @@ function DragList(props) {
     }
   };
 
+  const handleCardUpdate = (item) => {
+    // map through filteredData and find the item
+    Object.keys(filteredData).forEach((key) => {
+      filteredData[key].map((element) => {
+        if (element.id === item.id) {
+          element.title = item.title;
+          element.category = item.category;
+          element.dueDate = item.dueDate;
+          element.estimate = item.estimate;
+          element.estimateUnit = item.estimateUnit;
+          element.importanceId = item.importanceId;
+          element.importance = item.importance;
+          element.state = item.state;
+          element.stateId = item.stateId;
+          element.userId = item.userId;
+        }
+      });
+    });
+  };
+
   return (
     <MainPageWrapper>
       {props.addCard && <NewCard handleAddCard={handleAddCard} />}
@@ -196,6 +216,7 @@ function DragList(props) {
                 elements={filteredData[listKey]}
                 key={listKey}
                 prefix={listKey}
+                updateCard={handleCardUpdate}
               />
             ))}
           </ListGrid>

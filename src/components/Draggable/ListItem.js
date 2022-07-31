@@ -13,9 +13,10 @@ import {
   RightContent,
   TableContent,
 } from "./ListItemsStyles";
-import { importance } from "../../config/config";
+import { fetchLink, importance } from "../../config/config";
+import axios from "axios";
 
-const ListItem = ({ item, index }) => {
+const ListItem = ({ item, index, updateCard }) => {
   const [editMode, setEditMode] = React.useState(false);
   const [selecteValue, setSelecteValue] = React.useState("");
   // add state for edit mode
@@ -26,16 +27,71 @@ const ListItem = ({ item, index }) => {
     console.log(data);
   };
 
-  const handleEditMode = (id) => {
+  const handleEditMode = async (item) => {
     if (editMode) {
       // exexute when disabling edit mode
-      console.log();
-      // dataArray["Doing"].filter((item) => item.id === id)[0]
-      // dataArray["Todo"].filter((item) => item.id === id)[0]
-      // dataArray["Done"].filter((item) => item.id === id)[0]
+
+      // create new formdata and set the initial value to item
+      const dataToEdit = new FormData();
+      data.title
+        ? dataToEdit.set("title", data.title)
+        : dataToEdit.set("title", item.title);
+      data.category
+        ? dataToEdit.set("category", data.category)
+        : dataToEdit.set("category", item.category);
+      data.dueDate
+        ? dataToEdit.set("dueDate", data.dueDate)
+        : dataToEdit.set("dueDate", item.dueDate);
+      data.estimate
+        ? dataToEdit.set("estimate", data.estimate)
+        : dataToEdit.set("estimate", item.estimate);
+      data.estimateUnit
+        ? dataToEdit.set("estimateUnit", data.estimateUnit)
+        : dataToEdit.set("estimateUnit", item.estimateUnit);
+
+      if (data.importance) {
+        switch (data.importance) {
+          case importance.LOW.name:
+            dataToEdit.set("importanceId", 1);
+            break;
+          case importance.MEDIUM.name:
+            dataToEdit.set("importanceId", 2);
+            break;
+          case importance.HIGH.name:
+            dataToEdit.set("importanceId", 3);
+            break;
+        }
+      } else {
+        dataToEdit.set("importanceId", item.importanceId);
+      }
+
+      dataToEdit.set("id", item.id);
+      dataToEdit.set("stateId", item.stateId);
+      dataToEdit.set("userId", item.userId);
+
+      // send the data to the server
+      // send edit request with try catch
+      try {
+        const response = await axios.put(
+          `${fetchLink}/api/cards/` + item.id,
+          dataToEdit
+        );
+        if (response.data.cardModel) {
+          var obj = response.data.cardModel;
+          obj.importanceId == 1 && (obj.importance = importance.LOW.name);
+          obj.importanceId == 2 && (obj.importance = importance.MEDIUM.name);
+          obj.importanceId == 3 && (obj.importance = importance.HIGH.name);
+          obj.stateId == 1 && (obj.prefix = "Todo");
+          obj.stateId == 2 && (obj.prefix = "Doing");
+          obj.stateId == 3 && (obj.prefix = "Done");
+          updateCard(obj);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
     setEditMode(!editMode);
-    setData({ ...data, id });
+    setData({ ...data, id: item.id });
   };
 
   const newDate = new Date(item.dueDate);
@@ -55,7 +111,7 @@ const ListItem = ({ item, index }) => {
               <EditIcon
                 src={editIcon}
                 alt="Edit card"
-                onClick={() => handleEditMode(item.id)}
+                onClick={() => handleEditMode(item)}
               />
             </CardTitle>
             <CardContent>
@@ -81,33 +137,33 @@ const ListItem = ({ item, index }) => {
               {editMode && (
                 <RightContent>
                   <Input
-                    name="Title"
+                    name="category"
                     type="text"
                     defaultValue={item.category}
                     onChange={(e) => handleChange(e)}
                   />
                   <Input
-                    name="DueDate"
+                    name="dueDate"
                     type="date"
                     defaultValue={newDate.toLocaleDateString()}
                     onChange={(e) => handleChange(e)}
                   />
                   <EstimateInput>
                     <Input
-                      name="Estimate"
+                      name="estimate"
                       type="number"
                       defaultValue={item.estimate}
                       onChange={(e) => handleChange(e)}
                     />
                     <Input
-                      name="EstimateUnit"
+                      name="estimateUnit"
                       type="text"
                       defaultValue={item.estimateUnit}
                       onChange={(e) => handleChange(e)}
                     />
                   </EstimateInput>
                   <ImportanceDropDown
-                    name="Importance"
+                    name="importance"
                     importance={item.importance}
                     defaultValue={item.importance}
                     selected={selecteValue || item.importance}
