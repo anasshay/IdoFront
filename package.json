@@ -8,6 +8,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "axios": "^0.27.2",
     "generate-avatar": "1.4.10",
     "lorem-ipsum": "2.0.3",
     "react": "17.0.2",

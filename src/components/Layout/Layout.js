@@ -25,6 +25,7 @@ import addIcon from "../../assets/add.png";
 import closeIcon from "../../assets/x.png";
 import iIcon from "../../assets/i.png";
 import logoutIcon from "../../assets/logout.png";
+import avatar from "../../assets/avatar.png";
 
 function Layout(props) {
   const [showSearch, sethowSearch] = React.useState(false);
@@ -58,7 +59,7 @@ function Layout(props) {
           </SearcInput>
           <AddIcon src={addIcon} onClick={props.handleAddClick} />
           <UserProfile
-            src="https://via.placeholder.com/150"
+            src={avatar}
             onClick={() => {
               setshowUserProfile(!showUserProfile);
             }}
@@ -68,14 +69,14 @@ function Layout(props) {
               backgroundColor={colors.backgroundColors.headerBackgroundColor}
             >
               <UserDetailsWrapper>
-                <UserImage src="https://via.placeholder.com/150" />
+                <UserImage src={avatar} />
                 <UserData>
                   <p style={{ color: "#B6A3C2", margin: 0 }}>Email@gmail.com</p>
                   <Logout
                     onClick={() => {
-                      if (localStorage.getItem("token") !== null)
-                        localStorage.removeItem("token");
-                      window.location.replace("/login");
+                      if (localStorage.getItem("userId") !== null)
+                        localStorage.removeItem("userID");
+                      window.location.replace("/");
                     }}
                   >
                     Log Out

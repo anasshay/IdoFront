@@ -29,7 +29,9 @@ function DragList(props) {
 
   // fetch data from server
   useEffect(async () => {
-    const response = await axios.get(`${fetchLink}/api/users/1`);
+    const response = await axios.get(
+      `${fetchLink}/api/users/${localStorage.getItem("userId")}`
+    );
     response.data[0].cards &&
       response.data[0].cards.map((item) => {
         switch (item.stateId) {
@@ -152,7 +154,9 @@ function DragList(props) {
   const handleAddCard = async (data) => {
     // add the new data to the elemnts array
     // and send it to the server
-    data.userId = 1;
+    // get the userId from the local storage
+    const userId = localStorage.getItem("userId");
+    data.userId = userId;
     data.stateId = 1;
     data.importance == importance.LOW.name &&
       (data.importanceId = importance.LOW.id);

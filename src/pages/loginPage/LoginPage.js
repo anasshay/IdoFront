@@ -10,14 +10,31 @@ import {
   RightContainer,
 } from "./styles";
 import bkImage from "../../assets/bk.png";
+import { fetchLink } from "../../config/config";
+import axios from "axios";
 
 function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    const response = await axios.get(`${fetchLink}/api/users`);
+    // check if email and password are correct in the response array
+    if (
+      response.data.some(
+        (item) => item.email === email && item.password === password
+      )
+    ) {
+      // if correct, redirect to the main page
+      // set the user id in the local storage
+      localStorage.setItem("userId", response.data.find((item) => item.email === email).id);
+      window.location.href = "/home";
+    }
+    // else show error message
+    else {
+      alert("Wrong email or password");
+    }
   };
 
   const handleChange = (e) => {
