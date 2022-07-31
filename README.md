@@ -11,3 +11,4 @@
 - Adding a new card will insert it at the bottom of the "Todo" list.
 - You can search by card title.
 - The user logo is still a placeholder and not a dynamic one yet.
+- The application uses simple SQlite built in data, as for make it easy to try, also it can be implemented with other SQL databases.
