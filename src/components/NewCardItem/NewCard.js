@@ -23,21 +23,21 @@ const NewCard = (props) => {
 
   const handleSubmit = () => {
     if (
-      !data.Title ||
-      !data.Category ||
-      !data.DueDate ||
-      !data.Estimate ||
-      !data.Importance ||
-      !data.EstimateUnit
+      !data.title ||
+      !data.category ||
+      !data.dueDate ||
+      !data.estimate ||
+      !data.importance ||
+      !data.estimateUnit
     ) {
       alert("Please fill all fields");
     } else {
-      setData({ Importance: importance.LOW.name });
       props.handleAddCard(data);
+      setData({ Importance: importance.LOW.name });
     }
   };
 
-  const [data, setData] = React.useState({ Importance: importance.LOW.name });
+  const [data, setData] = React.useState({ importance: importance.LOW.name });
 
   return (
     <NewCardItem>
@@ -51,7 +51,7 @@ const NewCard = (props) => {
       <NewCardContent>
         <NewCardMiniTitle>Title:</NewCardMiniTitle>{" "}
         <NewCardTitle
-          name="Title"
+          name="title"
           type="text"
           onChange={(e) => {
             handleChange(e);
@@ -59,7 +59,7 @@ const NewCard = (props) => {
         />
         <NewCardMiniTitle>Category:</NewCardMiniTitle>
         <NewCardCategory
-          name="Category"
+          name="category"
           type="text"
           onChange={(e) => {
             handleChange(e);
@@ -67,7 +67,7 @@ const NewCard = (props) => {
         />
         <NewCardMiniTitle>Due Date:</NewCardMiniTitle>{" "}
         <NewCardDueDate
-          name="DueDate"
+          name="dueDate"
           type="date"
           onChange={(e) => {
             handleChange(e);
@@ -76,18 +76,18 @@ const NewCard = (props) => {
         <br />
         <NewCardMiniTitle>Estimate:</NewCardMiniTitle>{" "}
         <NewCardEstimate>
-          Title:
+          Count:
           <NewCardEstimateText
-            name="Estimate"
-            type="text"
+            name="estimate"
+            type="number"
             onChange={(e) => {
               handleChange(e);
             }}
           />
           Unit:
           <NewCardEstimateUnit
-            name="EstimateUnit"
-            type="number"
+            name="estimateUnit"
+            type="text"
             onChange={(e) => {
               handleChange(e);
             }}
@@ -95,7 +95,7 @@ const NewCard = (props) => {
         </NewCardEstimate>
         <NewCardMiniTitle>Importance:</NewCardMiniTitle>{" "}
         <NewCardImportance
-          name="Importance"
+          name="importance"
           onChange={(e) => {
             handleChange(e);
           }}

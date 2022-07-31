@@ -149,10 +149,42 @@ function DragList(props) {
     setElements(listCopy);
   };
 
-  const handleAddCard = (data) => {
+  const handleAddCard = async (data) => {
     // add the new data to the elemnts array
     // and send it to the server
-    console.log(data);
+    data.userId = 1;
+    data.stateId = 1;
+    data.importance == importance.LOW.name &&
+      (data.importanceId = importance.LOW.id);
+    data.importance == importance.MEDIUM.name &&
+      (data.importanceId = importance.MEDIUM.id);
+    data.importance == importance.HIGH.name &&
+      (data.importanceId = importance.HIGH.id);
+
+    // append datat to a new formdata object
+    const formData = new FormData();
+    // map through the data object
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+    // send the formdata to the server
+    const response = await axios.post(`${fetchLink}/api/cards`, formData);
+    console.log(response);
+    let newItem = response.data;
+    newItem.importanceId == importance.LOW.id &&
+      (newItem.importance = importance.LOW.name);
+    newItem.importanceId == importance.MEDIUM.id &&
+      (newItem.importance = importance.MEDIUM.name);
+    newItem.importanceId == importance.HIGH.id &&
+      (newItem.importance = importance.HIGH.name);
+
+    // update the elements array
+    setElements((prevState) => {
+      let newElements = { ...prevState };
+      newElements["Todo"].push(response.data);
+      return newElements;
+    });
+    props.closeAddCard(false);
   };
 
   const handlePrefixChange = async (item) => {

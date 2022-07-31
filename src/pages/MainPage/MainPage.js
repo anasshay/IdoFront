@@ -15,11 +15,15 @@ function MainPage() {
     setsearchValue(value);
   };
 
+  const closeAddCard = (state) => {
+    setAddCard(state);
+  }
+
   return (
     <Main backgroundColor={colors.backgroundColors.mainPageBackgroundColor}>
       <Layout handleAddClick={handleAddClick} handleSearch={handleSearch} />
       <MainPageWrapper>
-        <DragList addCard={addCard} searchValue={searchValue}/>
+        <DragList addCard={addCard} searchValue={searchValue} closeAddCard={closeAddCard}/>
       </MainPageWrapper>
     </Main>
   );

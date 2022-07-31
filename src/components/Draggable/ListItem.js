@@ -24,7 +24,6 @@ const ListItem = ({ item, index, updateCard }) => {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
   };
 
   const handleEditMode = async (item) => {
